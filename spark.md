@@ -77,3 +77,43 @@ En este caso, cada cada palabra estará en una fila. Po reso devuelve más filas
 *rdd*.reduceByKey(***function***) ---> Ejemplo: lineas.recudeByKey(_+_)
 
 > Esto agrupará por clave y sumará los valores de cada clave
+
+
+# Transformaciones
+
+>Hasta que no se ejecute una acción la transformación no se ejecuta. Para que no se ejecute innecesariamente utilizaremos ***persist()***  
+
+>Devuelve un RDD
+
+* map() >>> Aplica una función a cada elemento del RDD y devuelve un RDD
+
+* flatMap() >>> Aplica una funcion al RDD y devuelve un RDD en el que cada fila es lo devuelto por cada iteración
+
+* filter() >>> Devuelve un RDD con los elementos que cumplen la condición
+
+* distinct() >>> Elimina los duplicados
+
+* union() >>> Devuelve un RDD de ambos elementos de los RDDs
+
+* intersection() >>> Devuelve sólo los elementos encontrados en ambos RDDs
+
+* subtract() >>> Elimina los elementos de un RDD en función de si está en otro
+
+* cartesian() >>> Producto cartesiano con otro RDD
+
+# Acciones
+> No devuelve un RDD
+
+* collect() >>> Devuelve todos los elementos de un RDD
+
+* count() >>> Numero de elementos de un RDD
+
+* countByValue() >>> Numero de veces que cada elemento aparece en un RDD
+
+* take(n) >>> Devuelve los n elementos de un RDD
+
+* top(n) >>> Devuelve los n primeros elementos de un RDD
+
+* takeOrdered(n)(orden) >>> Devuelve n elementos con la condición deseada
+
+* reduce(***func***) >>> Combina os elementos del RDD con la función deseada P.E: x + y

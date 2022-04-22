@@ -7,6 +7,7 @@
 
 # Funcionamiento
 > * Divide los datos en diferentes nodos
+> * Las Tasks se envían al clúster, dónde se dividen entre los diferentes nodos
 > * Los nodos operan independientemente sobrelos datos en parelelo
 > * Se combinan los resultados al acabar
 
@@ -32,3 +33,32 @@ Aquí se aloja la API que define los RDD
 * El Driver lanza operaciones en paralelo en un clúster
 * El Driver define los datasets distribuidos en el clúster
 
+
+# Topología
+
+                              ______________
+                              Driver Program
+                              ______________
+                                    |
+                                    |
+                                    |
+                              _______________
+                              Cluster Manager
+                              _______________
+                             /      |       \
+                            /       |        \
+                           /        |         \
+                         ______   ________   _______
+                         Worker   Worker     Worker
+                           |         |         |
+                        Executor  Executor  Executor
+                        ________  _________ __________
+
+* El usuario lanza una aplicación
+* Spark lanza el driver e invoca al método main()
+* El driver contacta el Cluster Manager y pide recursos para lanzar los executors
+* El Cluster Manager lanza los Executors de parte del driver
+* El Driver corre a través de la aplicación
+* El Driver envía trabajo a los executers en forma de Task
+* Las tareas corren en los executers
+* Siel main() finaliza, finalizan los executors y liberan los recursos del Cluster Manager
